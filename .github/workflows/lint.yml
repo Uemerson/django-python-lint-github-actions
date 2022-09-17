@@ -5,6 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      my: ${{git ls-files '*.py' | wc -l }}
     if: ${{ git ls-files '*.py' | wc -l }} > 0
     strategy:
       matrix:

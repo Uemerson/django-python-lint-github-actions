@@ -17,7 +17,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    if: check-files.count-python-files.outputs.total > 0    
+    if: needs.check-files.count-python-files.outputs.total > 0    
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]

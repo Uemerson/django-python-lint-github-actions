@@ -9,7 +9,7 @@ jobs:
     outputs:
       my-key: ${{ steps.my-key.outputs.defined }}
     steps:
-        - id: count-files-python
+        - id: count-python-files
 #           env:
 #               MY_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
 #           if: "${{ env.MY_KEY != '' }}"
@@ -17,13 +17,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    
-#     env:
-#       my: ${{git ls-files '*.py' | wc -l }}
-#     if: ${{ git ls-files '*.py' | wc -l }} > 0
-    
-    
-    
+    if: check-files.count-python-files.outputs.total > 0    
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]

@@ -3,11 +3,27 @@ name: Pylint
 on: [push]
 
 jobs:
+
+  check-files:
+    runs-on: ubuntu-latest
+    outputs:
+      my-key: ${{ steps.my-key.outputs.defined }}
+    steps:
+        - id: count-files-python
+#           env:
+#               MY_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           if: "${{ env.MY_KEY != '' }}"
+          run: echo "::set-output name=total::git ls-files '*.py' | wc -l"
+
   build:
     runs-on: ubuntu-latest
-    env:
-      my: ${{git ls-files '*.py' | wc -l }}
-    if: ${{ git ls-files '*.py' | wc -l }} > 0
+    
+#     env:
+#       my: ${{git ls-files '*.py' | wc -l }}
+#     if: ${{ git ls-files '*.py' | wc -l }} > 0
+    
+    
+    
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]

@@ -10,9 +10,6 @@ jobs:
       my-key: ${{ steps.my-key.outputs.defined }}
     steps:
         - id: count-python-files
-#           env:
-#               MY_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           if: "${{ env.MY_KEY != '' }}"
           run: echo "::set-output name=total::git ls-files '*.py' | wc -l"
 
   build:

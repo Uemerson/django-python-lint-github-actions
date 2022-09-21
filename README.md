@@ -1,2 +1,2 @@
-# django-python-lint-github-actions
-A Django template with lint and docker
+# About
+A example to lint code with github actions
